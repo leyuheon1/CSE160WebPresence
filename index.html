@@ -14,9 +14,8 @@
       </a>
       <nav class="site-nav" aria-label="Project sections">
         <a href="#abstract">Abstract</a>
-        <a href="#architecture">Architecture</a>
         <a href="#results">Results</a>
-        <a href="#replication">Replicate</a>
+        <a href="#replication">Documentation</a>
         <a href="#artifacts">Artifacts</a>
         <a href="#team">Team</a>
       </nav>
@@ -25,7 +24,7 @@
     <main id="top">
       <section class="intro-section section-band">
         <div class="intro-copy">
-          <p class="eyebrow">CSE 160 Project Web Presence</p>
+          <p class="eyebrow">CSE 145 Project Web Presence</p>
           <h1>SmolVLA on AMD NPU</h1>
           <p class="lead">
             Make VLA actually deployable offline with AMD NPU
@@ -61,58 +60,6 @@
         <p class="wide-text">
           While Vision-Language-Action (VLA) models excel at generalization across different robotics tasks, their reliance on power hungry GPUs make them impractical for edge platforms where resources are more constrained. This led to the exploration of NPU architectures, specifically the AMD Strix Halo Platform with its XDNA 2.5 NPU architecture, because AMD NPUs are known for power-efficient execution of deep learning models. However, maximizing NPU performance remains challenging because of the relatively immature software stack compared to GPUs. VITIS compiler failed to allocate most of the operations to NPU and fell back to CPU. To address this compiler fallback issue, I utilized AMD IRON, close-to-metal API for AMD NPUs, and XRT,  to map SmolVLA directly to NPU. When evaluated on the LIBERO Spatial benchmark, this NPU implementation completely matched the FP32 iGPU baseline in terms of task success rate while performing the task 2.7 times faster than the CPU based execution. 
         </p>
-      </section>
-
-      
-
-      <section id="architecture" class="content-section section-band">
-        <div class="section-heading">
-          <p class="eyebrow">System Design</p>
-          <h2>Architecture</h2>
-        </div>
-        <div class="pipeline" aria-label="Project pipeline">
-          <div class="pipeline-step">
-            <span class="step-number">01</span>
-            <h3>Observation</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <div class="pipeline-step">
-            <span class="step-number">02</span>
-            <h3>Preprocess</h3>
-            <p>Nullam feugiat nibh at ligula hendrerit, sit amet feugiat sem.</p>
-          </div>
-          <div class="pipeline-step">
-            <span class="step-number">03</span>
-            <h3>NPU Policy</h3>
-            <p>Integer eu velit eget arcu laoreet fermentum non vitae lacus.</p>
-          </div>
-          <div class="pipeline-step">
-            <span class="step-number">04</span>
-            <h3>Robot Action</h3>
-            <p>Sed posuere est eu mi facilisis, vel luctus justo fermentum.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="implementation" class="content-section">
-        <div class="section-heading">
-          <p class="eyebrow">Repository Guide</p>
-          <h2>Implementation</h2>
-        </div>
-        <div class="file-grid">
-          <article class="file-card">
-            <h3>smolvla_npu.py</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </article>
-          <article class="file-card">
-            <h3>run_libero_benchmark.py</h3>
-            <p>Praesent rhoncus massa sed arcu tempor, in ultricies lorem.</p>
-          </article>
-          <article class="file-card">
-            <h3>libero_benchmark_usage.md</h3>
-            <p>Etiam nec nibh quis arcu fermentum commodo sed id lorem.</p>
-          </article>
-        </div>
       </section>
 
       <section id="results" class="content-section section-band">
@@ -167,11 +114,11 @@
 
       <section id="replication" class="content-section">
         <div class="section-heading">
-          <p class="eyebrow">Reproduction</p>
-          <h2>Replication</h2>
+          <p class="eyebrow">implementation and replication</p>
+          <h2>Documentation</h2>
         </div>
         <p class="wide-text">
-          For reproducing this project's results please refer to link.
+          To prevent the mainpage from getting cluttered with information, I have moved the implementation and replication details to separate documentation page. Please refer to the following link for more information
         </p>
         
       </section>
@@ -182,17 +129,17 @@
           <h2>Artifacts</h2>
         </div>
         <div class="artifact-grid">
-          <a class="artifact-card" href="#" aria-label="Milestone report placeholder">
+          <a class="artifact-card" href="https://drive.google.com/file/d/1ilp9qQWwrKrozRO3OeyXtYyQoKVvRmqp/view?usp=sharing" aria-label="Milestone report placeholder">
             <span>PDF</span>
             <strong>Project Specification</strong>
             
           </a>
-          <a class="artifact-card" href="#" aria-label="Milestone report placeholder">
+          <a class="artifact-card" href="https://docs.google.com/presentation/d/1WV2A-4SkKGEiLboMheAb4yy5RpUe07y2GgKgcFibXIc/edit?usp=sharing" aria-label="Milestone report placeholder">
             <span>PDF</span>
             <strong>Oral Update</strong>
             
           </a>
-          <a class="artifact-card" href="#" aria-label="Milestone report placeholder">
+          <a class="artifact-card" href="https://drive.google.com/file/d/1DGJw-jRqMgkgz8e1TrhkfEwhV_XJWF3_/view?usp=sharing" aria-label="Milestone report placeholder">
             <span>PDF</span>
             <strong>Milestone Report</strong>
             
@@ -234,7 +181,7 @@
     </main>
 
     <footer class="site-footer">
-      <p>SmolVLA on AMD NPU · CSE 160 Project Web Presence</p>
+      <p>SmolVLA on AMD NPU · CSE 145 Project Web Presence</p>
     </footer>
   </body>
 </html>
