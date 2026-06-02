@@ -18,6 +18,7 @@
         <a href="#results">Results</a>
         <a href="#replication">Replicate</a>
         <a href="#artifacts">Artifacts</a>
+        <a href="#team">Team</a>
       </nav>
     </header>
 
@@ -27,14 +28,12 @@
           <p class="eyebrow">CSE 160 Project Web Presence</p>
           <h1>SmolVLA on AMD NPU</h1>
           <p class="lead">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            pulvinar, neque ac posuere elementum, sem nibh commodo ligula, at
-            luctus nibh mauris non urna.
+            Make VLA actually deployable offline with AMD NPU
           </p>
           <div class="action-row" aria-label="Primary project links">
-            <a class="button primary" href="#results">View Results</a>
-            <a class="button secondary" href="#replication">Replication Notes</a>
-            <a class="button secondary" href="#artifacts">Class Artifacts</a>
+            <a class="button primary" href="#abstract">Abstract</a>
+            <a class="button secondary" href="#replication">Code</a>
+            <a class="button secondary" href="#artifacts">Documentation</a>
           </div>
         </div>
 
@@ -42,16 +41,13 @@
           <img src="assets/xdna2.png" alt="AMD XDNA2 architecture visual">
           <div class="metric-grid">
             <div class="metric-card">
-              <span class="metric-value">90%</span>
-              <span class="metric-label">Placeholder success</span>
+              <span class="metric-value">2.7x</span>
+              <span class="metric-label">Faster than CPU</span>
             </div>
+            
             <div class="metric-card">
-              <span class="metric-value">10</span>
-              <span class="metric-label">Placeholder tasks</span>
-            </div>
-            <div class="metric-card">
-              <span class="metric-value">NPU</span>
-              <span class="metric-label">Placeholder backend</span>
+              <span class="metric-value">100%</span>
+              <span class="metric-label">Matched FP32 accuracy</span>
             </div>
           </div>
         </div>
@@ -63,33 +59,11 @@
           <h2>Abstract</h2>
         </div>
         <p class="wide-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-          malesuada, velit at lacinia tincidunt, mi arcu fermentum mi, id
-          posuere lorem lacus sed lectus. Suspendisse potenti. Morbi in magna
-          sed purus bibendum luctus vitae sed lacus.
+          While Vision-Language-Action (VLA) models excel at generalization across different robotics tasks, their reliance on power hungry GPUs make them impractical for edge platforms where resources are more constrained. This led to the exploration of NPU architectures, specifically the AMD Strix Halo Platform with its XDNA 2.5 NPU architecture, because AMD NPUs are known for power-efficient execution of deep learning models. However, maximizing NPU performance remains challenging because of the relatively immature software stack compared to GPUs. VITIS compiler failed to allocate most of the operations to NPU and fell back to CPU. To address this compiler fallback issue, I utilized AMD IRON, close-to-metal API for AMD NPUs, and XRT,  to map SmolVLA directly to NPU. When evaluated on the LIBERO Spatial benchmark, this NPU implementation completely matched the FP32 iGPU baseline in terms of task success rate while performing the task 2.7 times faster than the CPU based execution. 
         </p>
       </section>
 
-      <section id="motivation" class="content-section split-section">
-        <div>
-          <div class="section-heading">
-            <p class="eyebrow">Motivation</p>
-            <h2>Why This Matters</h2>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            tincidunt, lectus a dictum finibus, urna erat dignissim augue, sed
-            pulvinar neque lectus ut nunc.
-          </p>
-          <p>
-            Aliquam erat volutpat. Vivamus et massa at velit venenatis
-            fringilla. Curabitur vitae elit sed nibh ultricies posuere.
-          </p>
-        </div>
-        <div class="image-panel">
-          <img src="assets/vla-architecture.jpg" alt="Vision language action architecture diagram">
-        </div>
-      </section>
+      
 
       <section id="architecture" class="content-section section-band">
         <div class="section-heading">
@@ -138,10 +112,6 @@
             <h3>libero_benchmark_usage.md</h3>
             <p>Etiam nec nibh quis arcu fermentum commodo sed id lorem.</p>
           </article>
-          <article class="file-card">
-            <h3>cleanup.md</h3>
-            <p>Morbi efficitur leo ac nulla fermentum, sed porta justo.</p>
-          </article>
         </div>
       </section>
 
@@ -156,29 +126,29 @@
               <thead>
                 <tr>
                   <th>Backend</th>
-                  <th>Benchmark</th>
+                  
                   <th>Success</th>
-                  <th>Time</th>
+                  <th>Time(s/step)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>NPU</td>
-                  <td>Lorem ipsum</td>
+                  
                   <td>90%</td>
-                  <td>00.00s</td>
+                  <td>17.3</td>
                 </tr>
                 <tr>
                   <td>iGPU</td>
-                  <td>Lorem ipsum</td>
+                  
                   <td>90%</td>
-                  <td>00.00s</td>
+                  <td>0.36</td>
                 </tr>
                 <tr>
                   <td>CPU</td>
-                  <td>Lorem ipsum</td>
-                  <td>Probe</td>
-                  <td>00.00s/step</td>
+                  
+                  <td>N/A</td>
+                  <td>46.2</td>
                 </tr>
               </tbody>
             </table>
@@ -186,9 +156,10 @@
           <div class="result-note">
             <h3>Interpretation</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              dignissim neque ac facilisis volutpat. Vestibulum ante ipsum
-              primis in faucibus orci luctus et ultrices posuere cubilia curae.
+              The NPU implementation and CPU/iGPU baseline were evaluated on the LIBERO Spatial benchmark using the same SmolVLA checkpoint and evaluation path. Both the NPU implementation and the FP32 iGPU baseline achieved a 90% task success rate across 10 LIBERO Spatial episodes, showing that the NPU implementation preserved original SmolVLA success rate. CPU success rate could not be recorded because the whole process will take more than 30 hours due to its slow speed of execution.
+                <br>
+              For performance, the NPU path averaged about 17.3 seconds per step, compared with about 46.2 seconds per step for CPU execution. This is approximately 2.7x speedup over CPU. The iGPU baseline remained faster at about 0.36 seconds per step.
+
             </p>
           </div>
         </div>
@@ -200,12 +171,9 @@
           <h2>Replication</h2>
         </div>
         <p class="wide-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-          pellentesque enim in arcu lacinia, non posuere mi luctus.
+          For reproducing this project's results please refer to link.
         </p>
-        <pre><code>cd path/to/project
-source /opt/xilinx/xrt/setup.sh
-python path/to/run_libero_benchmark.py --output-dir outputs/eval/example</code></pre>
+        
       </section>
 
       <section id="artifacts" class="content-section section-band">
@@ -216,23 +184,33 @@ python path/to/run_libero_benchmark.py --output-dir outputs/eval/example</code><
         <div class="artifact-grid">
           <a class="artifact-card" href="#" aria-label="Milestone report placeholder">
             <span>PDF</span>
+            <strong>Project Specification</strong>
+            
+          </a>
+          <a class="artifact-card" href="#" aria-label="Milestone report placeholder">
+            <span>PDF</span>
+            <strong>Oral Update</strong>
+            
+          </a>
+          <a class="artifact-card" href="#" aria-label="Milestone report placeholder">
+            <span>PDF</span>
             <strong>Milestone Report</strong>
-            <small>Lorem ipsum dolor sit amet.</small>
+            
           </a>
           <a class="artifact-card" href="#" aria-label="Final report placeholder">
             <span>PDF</span>
-            <strong>Final Report</strong>
-            <small>Consectetur adipiscing elit.</small>
+            <strong>Final Presentation</strong>
+            
           </a>
           <a class="artifact-card" href="#" aria-label="Presentation placeholder">
             <span>SLD</span>
-            <strong>Presentation</strong>
-            <small>Integer vitae ligula non justo.</small>
+            <strong>Final Video</strong>
+            
           </a>
           <a class="artifact-card" href="#" aria-label="Demo video placeholder">
             <span>VID</span>
-            <strong>Demo Video</strong>
-            <small>Aliquam sed lacus vitae mi.</small>
+            <strong>Final Report</strong>
+            
           </a>
         </div>
       </section>
@@ -243,30 +221,16 @@ python path/to/run_libero_benchmark.py --output-dir outputs/eval/example</code><
             <p class="eyebrow">Team</p>
             <h2>Project Members</h2>
           </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-            porttitor, nibh non tincidunt egestas, sapien arcu eleifend nibh,
-            vitae ultricies magna mauris vitae justo.
-          </p>
+          <div class="profile-card">
+            <span class="profile-initials">YJ</span>
+            <h3>Yuheon Joh</h3>
+            <p>This project is solo project by Yuehon Joh and all the results of this project is made by Yuheon Joh with the help of Codex and Gemini</p>
+          </div>
         </div>
-        <div class="profile-card">
-          <span class="profile-initials">YJ</span>
-          <h3>Yuheon Joh</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
+        
       </section>
 
-      <section id="future-work" class="content-section closing-section">
-        <div class="section-heading">
-          <p class="eyebrow">Next Steps</p>
-          <h2>Future Work</h2>
-        </div>
-        <div class="future-list">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <p>Vivamus sagittis neque sit amet urna dignissim tempor.</p>
-          <p>Integer porta ipsum vitae arcu laoreet, nec fermentum mi pulvinar.</p>
-        </div>
-      </section>
+      
     </main>
 
     <footer class="site-footer">
